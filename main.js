@@ -36,3 +36,13 @@ static encrypt(o: string, salt = 'inceme') {
 static decrypt(o: string, salt = 'inceme') {
   return CryptoJS.AES.decrypt(o, salt).toString(CryptoJS.enc.Utf8);
 }
+
+/**
+* Elimina espacios y caracteres especiales
+* @param stringToReplace
+*/
+static cleanString(stringToReplace) {
+  let res = stringToReplace.replaceAll(' ', ''); //quito espacios
+  res = res.replace(/[^\w\s]/gi, '');  //quito caracteres especiales
+  return res.trim();
+}
