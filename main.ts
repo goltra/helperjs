@@ -79,14 +79,14 @@ export class Helper {
 
      /**
      * Recibe un objeto de tipo Date y lo devuelve como string con el formato
-     * YYYY-MM-DD. En caso que la zona horario sea un valor menor de 0 entonces sumamos 1 día a la fecha
+     * YYYY-MM-DD. Se usa la hora UTC para no tener en cuenta las diferencias horarias.
      * @param date: Date
      * @return string
      */
     public getDateToString(date: Date): string {
-        return (date.getFullYear().toString().length === 1 ? '0' + date.getFullYear().toString() : date.getFullYear().toString()) + '-' +
-            ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '-' +
-            (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString());
+        return (date.getFullYear().toString().length === 1 ? '0' + date.getUTCFullYear().toString() : date.getUTCFullYear().toString()) + '-' +
+            ((date.getUTCMonth() + 1).toString().length === 1 ? '0' + (date.getUTCMonth() + 1).toString() : (date.getUTCMonth() + 1).toString()) + '-' +
+            (date.getUTCDate().toString().length === 1 ? '0' + date.getUTCDate().toString() : date.getUTCDate().toString());
     }
 
     /**
