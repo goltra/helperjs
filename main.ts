@@ -77,6 +77,29 @@ export class Helper {
         }
     }
 
+     /**
+     * Recibe un objeto de tipo Date y lo devuelve como string con el formato
+     * YYYY-MM-DD. En caso que la zona horario sea un valor menor de 0 entonces sumamos 1 día a la fecha
+     * @param date: Date
+     * @return string
+     */
+    public getDateToString(date: Date): string {
+        return (date.getFullYear().toString().length === 1 ? '0' + date.getFullYear().toString() : date.getFullYear().toString()) + '-' +
+            ((date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '-' +
+            (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString());
+    }
+
+    /**
+     * Recibe una cadena que debe tener el formato HH:mm, en cuyo caso devuelve true.
+     * En caso contrario devuelve false.
+     * @param time: string
+     * @return boolean
+     */
+    checkTimeFormat(time: string): boolean {
+        const reg = new RegExp(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/);
+        return reg.test(time);
+    }
+    
     /**
      * Array de timezones
      * @return Array<string>
